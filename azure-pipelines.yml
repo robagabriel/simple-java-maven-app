@@ -15,6 +15,15 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: Gradle@3
+  inputs:
+    gradleWrapperFile: 'gradlew'
+    tasks: 'build'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    sonarQubeRunAnalysis: false
+    spotBugsAnalysis: false
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
